@@ -1,32 +1,48 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div class="light">
+      <router-view
+        @change="change"
+        :from="from"
+      />
     </div>
-    <router-view/>
   </div>
 </template>
 
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+.light{
+  height: 70%;
+  min-height: 450px;
+  width: 20%;
+  min-width: 250px;
+  background: grey;
 }
+
 </style>
+<script>
+export default {
+  data() {
+    return {
+      from: 'Red',
+    }
+  },
+  methods: {
+    change(data){
+      console.log(data)
+      this.from = data.from;
+      this.$router.push({path: data.to});
+
+    }
+  },
+
+}
+</script>
